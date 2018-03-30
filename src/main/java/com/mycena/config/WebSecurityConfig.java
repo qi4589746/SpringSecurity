@@ -31,14 +31,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         super.configure(http);
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("root")
-                .password("root")
-                .roles("USER")
-               ;
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("root")
+//                .password("root")
+//                .roles("USER")
+//               ;
+//    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("user").password("user").roles("USER").build());
+        manager.createUser(User.withUsername("admin").password("admin").roles("USER").build());
+        return manager;
     }
 
     //5.0後必須要設定PasswordEncoder
