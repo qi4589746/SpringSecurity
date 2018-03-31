@@ -1,7 +1,10 @@
 package com.mycena.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,14 +15,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  * Created by jihung on 3/30/18.
  */
 
-//@Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+//        super.configure(http);
         /*default in super.configure(http)*/
 //        http
 //                .authorizeRequests()
@@ -29,11 +32,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .httpBasic();
 
         http
-                .csrf().disable()
-                .formLogin().disable()
-                .anonymous().disable()
-                .httpBasic()
-                .and()
+//                .csrf().disable()
+//                .formLogin().disable()
+//                .anonymous().disable()
+//                .httpBasic()
+//                .and()
                 .authorizeRequests()
                 .anyRequest().authenticated();
     }
@@ -44,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService1() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user").password("user").authorities("ROLE_USER").build());
         manager.createUser(User.withUsername("admin").password("admin").authorities("ROLE_ADMIN").build());

@@ -14,14 +14,14 @@ public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-//        http
+//        super.configure(http);
+        http
 //                .csrf().disable()
 //                .formLogin().disable()
 //                .anonymous().disable()
-//                .httpBasic()
-//                .and()
-//                .authorizeRequests()
-//                .anyRequest().authenticated();
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated();
     }
 }
