@@ -20,15 +20,21 @@ public class UserRole {
 
     public long roleId;
 
-
-    public UserRole(long id, long userId, long roleId) {
-        this.id = id;
-        this.userId = userId;
-        this.roleId = roleId;
+    public UserRole() {
     }
 
     public UserRole(long userId, long roleId) {
         this.userId = userId;
         this.roleId = roleId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                '}';
     }
 }

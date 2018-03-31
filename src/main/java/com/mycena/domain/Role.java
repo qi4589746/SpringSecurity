@@ -17,12 +17,18 @@ public class Role {
 
     public String role;
 
+    public Role() {
+    }
+
     public Role(String role) {
         this.role = role;
     }
 
-    public Role(long id, String role) {
-        this.id = id;
-        this.role = role;
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

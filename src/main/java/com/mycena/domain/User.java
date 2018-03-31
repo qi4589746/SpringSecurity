@@ -19,15 +19,20 @@ public class User {
 
     public String userPassword;
 
+    public User() {
+    }
+
     public User(String userName, String userPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
     }
 
-    public User(long id, String userName, String userPassword) {
-        this.id = id;
-        this.userName = userName;
-        this.userPassword = userPassword;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                '}';
     }
-
 }
