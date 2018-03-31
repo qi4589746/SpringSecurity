@@ -26,12 +26,11 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.4.7.RELEASE'
-
 	compile('org.springframework.boot:spring-boot-starter-web-services')
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.1.RELEASE'
 
-//	compile('org.springframework.security:spring-security-config')
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('mysql:mysql-connector-java')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
