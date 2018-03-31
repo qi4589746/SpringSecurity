@@ -41,6 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
+
+    //可不設定，下面的userDetailsService Bean會自動DI。（主要看UserDetailsService class => userDetailsService 名稱改掉也行）
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService());
