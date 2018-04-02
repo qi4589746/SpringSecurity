@@ -15,31 +15,31 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  * Created by jihung on 3/30/18.
  */
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
-        /*default in super.configure(http)*/
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+////        super.configure(http);
+//        /*default in super.configure(http)*/
+////        http
+////                .authorizeRequests()
+////                .anyRequest().authenticated()
+////                .and()
+////                .formLogin().and()
+////                .httpBasic();
+//
 //        http
+////                .csrf().disable()
+////                .formLogin().disable()
+////                .anonymous().disable()
+////                .httpBasic()
+////                .and()
 //                .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().and()
-//                .httpBasic();
-
-        http
-//                .csrf().disable()
-//                .formLogin().disable()
-//                .anonymous().disable()
-//                .httpBasic()
-//                .and()
-                .authorizeRequests()
-                .anyRequest().authenticated();
-    }
+//                .anyRequest().authenticated();
+//    }
 
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
