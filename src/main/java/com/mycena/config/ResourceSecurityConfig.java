@@ -32,7 +32,7 @@ public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
     {
         //authenticationProvider，兩樣設置：1. userList  2. 加密方法PasswordEncoder
         final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setUserDetailsService(new InMemoryUserDetailsManager());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         //重要，AuthenticationManagerBuilder設置Provider會附蓋掉PasswordEncoder的Bean
         return authenticationProvider;
@@ -59,13 +59,13 @@ public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
    }
 
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user").password("user").authorities("ROLE_USER").build());
-        manager.createUser(User.withUsername("admin").password("admin").authorities("ROLE_ADMIN").build());
-        return manager;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("user").password("user").authorities("ROLE_USER").build());
+//        manager.createUser(User.withUsername("admin").password("admin").authorities("ROLE_ADMIN").build());
+//        return manager;
+//    }
 
     //5.0後必須要設定PasswordEncoder
     @SuppressWarnings("deprecation")
