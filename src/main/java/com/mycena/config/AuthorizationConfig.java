@@ -1,10 +1,12 @@
 package com.mycena.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -27,8 +29,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     //Refresh Token 時效
     private int refreshTokenValiditySeconds = 60 * 60 * 24 * 30;
 
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Value("mycena")
     private String signingKey;
@@ -51,7 +53,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
         endpoints
                 .tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
-                .tokenServices(toPrimarykenServices())
+                .authenticationManager(authenticationManager)//Important! support grant type: password
+                .tokenServices(tokenServices())
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
         ;
     }
@@ -86,7 +89,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Bean
     @Primary
-    public DefaultTokenServices toPrimarykenServices() {
+    public DefaultTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
         services.setTokenStore(tokenStore());
         services.setSupportRefreshToken(true);
