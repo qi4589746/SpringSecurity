@@ -3,6 +3,7 @@ package com.mycena.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
+@ComponentScan//讓authenticationManager不要有紅色底線而已
 public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     //Access Token 時效
@@ -67,9 +69,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .authorities("ROLE_ADMIN")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("app1")
-                .autoApprove("app1")
-                .accessTokenValiditySeconds(2000)
-                .refreshTokenValiditySeconds(2000);
+                .autoApprove("app1");
     }
     //===Can get token by postman tool.===
     //Auth URL: http://localhost:8080/oauth/authorize

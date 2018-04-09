@@ -23,4 +23,13 @@ public class SampleService {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity getUserContent() {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        System.out.println(role);
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+        return new ResponseEntity<String>(SecurityContextHolder.getContext().toString(), HttpStatus.OK);
+
+    }
+
 }
